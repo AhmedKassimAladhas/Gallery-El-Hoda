@@ -1,0 +1,146 @@
+Create Table Users(
+	Number  int primary key,
+	Name Varchar(50),
+	Username Varchar(50),
+	Password Varchar(50)
+);
+Create Table Categories(
+	Number int primary key,
+	Section Varchar(100),
+	Model Varchar(100),
+	Price_Buy double,
+	Price_Sale double,
+	Barcode Varchar(100),
+	Color Varchar(100),
+	image mediumblob,
+	Stored_Name Varchar(80),
+	Count Varchar(100),
+	Notes Varchar(200)
+);
+create table customer(
+	id int Primary key,
+	name Varchar(50),
+	phone1 Varchar(50),
+	address Varchar(100)
+);
+Create Table Bill(
+	NumberBill int primary key,
+	TimeBill Varchar(80),
+	DateBill Varchar(80),
+	EmpName Varchar(50),	
+	total_buyPrice double,
+	totalbilll double,
+	Discount double,
+	Total double,
+	name Varchar(50),
+	phone Varchar(50),
+	address Varchar(100)
+);
+Create Table BillLine(
+	NumberLine int primary key,
+	NumberBill int,
+	number int,
+	date_today Varchar(50),
+	Section Varchar(50),
+	Model Varchar(50),
+	Color Varchar(50),	
+	Price_buy double,
+	Price_sale double,
+	Count Varchar(100),
+	Price double
+);
+Create Table Sections(
+	Number int primary key,
+	Section Varchar(100)
+);
+Create Table Category(
+	Number int primary key,
+	Model Varchar(100)
+);
+Create Table Expenses(
+	Number int primary key,
+	EmpName Varchar(50),
+	DateExp Varchar(50),
+	TimeExp Varchar(50),
+	Expenses Varchar(100),
+	Price double,
+	Notes Varchar(200)
+);
+create table ReturnBill(
+	id int Primary key,
+	number_billLine int,
+	number_bill int,
+	date_today Date,
+	seller_emp Varchar(50),
+	sec Varchar(50),
+	cat Varchar(50),
+	color Varchar(50),
+	count int,
+	cost Double
+);
+create table Notes(
+	id int Primary key,
+	date_today Varchar(50),
+	name Varchar(50),
+	cost double,
+	phone Varchar(50),
+	Payment_status  Varchar(50),
+	notes Varchar(200)
+);
+create view AccountsBillLine as select 
+	BillLine.date_today,
+	BillLine.NumberBill,
+	BillLine.Model,
+	BillLine.color,
+	BillLine.count,
+	BillLine.price_buy,
+	BillLine.price_sale,
+	
+	BillLine.count * BillLine.price_buy as 'total_buy',
+	BillLine.count * BillLine.price_sale as 'total_sale',
+		
+	BillLine.count * BillLine.price_sale - BillLine.count * BillLine.price_buy as 'total'
+	from BillLine
+	
+	
+create view AccountsBill as select
+	Bill.NumberBill,
+	Bill.DateBill,
+	Bill.TimeBill,
+	Bill.empSaler,
+	Bill.total_buyPrice as 'total_buy',
+	Bill.totalbilll,
+	Bill.discount,
+	Bill.total,
+	
+	Bill.totalbilll - Bill.total_buyPrice as 'total_before',
+	Bill.total - Bill.total_buyPrice as 'total_after'
+	from Bill
+	
+	
+create view  totalexpenses as select 
+	DateExp,
+	sum(Price) as 'price'
+	from expenses
+	GROUP BY DateExp
+	
+create view AccountsDay as 
+	SELECT Bill.DateBill,
+	sum(Bill.total_buyPrice ) as 'total_buy' ,
+	sum(Bill.totalbilll) as 'total_bill',
+	IFNULL(IF( Bill.DateBill != totalexpenses.DateExp, 0, totalexpenses.price), '0') as 'expense' ,
+	sum(Bill.discount) as 'discount',
+	sum(Bill.total )  -  IFNULL(IF( Bill.DateBill != totalexpenses.DateExp, 0, totalexpenses.price), '0')  as 'total',
+	sum(Bill.totalbilll - Bill.total_buyPrice) as 'total_before',
+	sum(Bill.total  - Bill.total_buyPrice)   - IFNULL(IF( Bill.DateBill != totalexpenses.DateExp, 0, totalexpenses.price), '0') as 'total_after'
+	
+	FROM Bill
+	LEFT JOIN  totalexpenses ON Bill.DateBill=totalexpenses.DateExp
+	GROUP BY 	Bill.DateBill
+	
+create view BillDate as SELECT 
+	DATE_FORMAT(`DateBill`,'%M') as date_today,
+	count(bill.NumberBill) AS count 
+	from bill 
+	where DATE_FORMAT(`DateBill`,'%Y') = YEAR(CURDATE())
+	group by DATE_FORMAT(`DateBill`,'%M %Y')	

@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" isFloatColumnFooter="true" uuid="5a96e80b-1b17-48c6-a784-286a3af399c2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DateFromPram" class="java.lang.String"/>
+	<parameter name="DateToPram" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     *,
+     accountsbillline.`date_today` AS accountsbillline_date_today,
+     accountsbillline.`NumberBill` AS accountsbillline_NumberBill,
+     accountsbillline.`Model` AS accountsbillline_Model,
+     accountsbillline.`color` AS accountsbillline_color,
+     accountsbillline.`count` AS accountsbillline_count,
+     accountsbillline.`price_buy` AS accountsbillline_price_buy,
+     accountsbillline.`price_sale` AS accountsbillline_price_sale,
+     accountsbillline.`total_buy` AS accountsbillline_total_buy,
+     accountsbillline.`total_sale` AS accountsbillline_total_sale,
+     accountsbillline.`total` AS accountsbillline_total
+FROM
+     `accountsbillline` accountsbillline
+WHERE
+     date_today BETWEEN $P{DateFromPram} and $P{DateToPram}]]>
+	</queryString>
+	<field name="date_today" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NumberBill" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Model" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="count" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="price_buy" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="price_sale" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_buy" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_sale" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accountsbillline_date_today" class="java.lang.String"/>
+	<field name="accountsbillline_NumberBill" class="java.lang.Integer"/>
+	<field name="accountsbillline_Model" class="java.lang.String"/>
+	<field name="accountsbillline_color" class="java.lang.String"/>
+	<field name="accountsbillline_count" class="java.lang.String"/>
+	<field name="accountsbillline_price_buy" class="java.lang.Double"/>
+	<field name="accountsbillline_price_sale" class="java.lang.Double"/>
+	<field name="accountsbillline_total_buy" class="java.lang.Double"/>
+	<field name="accountsbillline_total_sale" class="java.lang.Double"/>
+	<field name="accountsbillline_total" class="java.lang.Double"/>
+	<variable name="total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total_sale_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_sale}]]></variableExpression>
+	</variable>
+	<variable name="total_buy_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_buy}]]></variableExpression>
+	</variable>
+	<variable name="total_sale_2" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_sale}]]></variableExpression>
+	</variable>
+	<variable name="total_buy_2" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_buy}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="104" splitType="Stretch">
+			<line>
+				<reportElement x="10" y="97" width="542" height="1" uuid="675383b8-edc3-4157-beaa-22bdc65ba51c"/>
+			</line>
+			<image>
+				<reportElement x="2" y="2" width="181" height="68" uuid="a2f41306-a99b-4ca1-b211-08768b193b75"/>
+				<imageExpression><![CDATA["D:\\ahmed\\Projects\\Gallery El hoda\\Images\\Logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="210" y="37" width="45" height="20" uuid="3cda6d02-e055-40d2-a3bd-42d6d83a00b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[إلى]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="37" width="57" height="20" uuid="2d4c9ae3-4904-4050-8d55-77c2a1186b9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[بتاريخ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="76" width="542" height="1" uuid="44e024b5-ab28-48c2-9b72-a6736f10a374"/>
+			</line>
+			<staticText>
+				<reportElement x="344" y="2" width="208" height="31" uuid="b4e95427-1ccc-431d-98f4-bfe8e9a2a2dc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[تقرير عن تفاصيل الفواتير]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="257" y="37" width="96" height="20" uuid="41c1a9cb-7119-4ba9-aa9c-1dd66d5ec4d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DateFromPram}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="109" y="37" width="100" height="20" uuid="5548878c-f9c4-40a9-aa50-4cfb235c1d29"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DateToPram}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="-1" y="0" width="56" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="524e60ea-4d9b-423c-b144-41a8591d9684"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الربح]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="55" y="0" width="55" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="fd11803c-b711-4c89-a661-3dd894aed765"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[إجمالي البيع]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="110" y="0" width="55" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="0e3e790f-165d-4042-8990-9fa0a5537cc3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[إجمالي الشراء]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="165" y="0" width="55" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="31e70033-602c-4386-877d-b5c7658ff8db"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[سعر البيع]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="220" y="0" width="55" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="a4c72887-256d-4620-be84-67938fc95a41"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[سعر الشراء]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="275" y="0" width="48" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="07684607-504e-466f-8c70-f0080449943f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[العدد]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="323" y="0" width="55" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="8c4ad9a6-1f70-4971-9f3e-09112ed2e98f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[اللون]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="378" y="0" width="67" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="1d74c4f7-e027-4a34-89c8-9a866985fca0"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الموديل]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="445" y="0" width="50" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="6653816a-8bf4-4086-a870-88b4e00c4f6f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الفاتورة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="495" y="0" width="56" height="20" forecolor="#FFFFFF" backcolor="#000066" uuid="13a1f9c5-2928-449b-9b8a-d50f3777cd6a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[التاريخ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="# LE">
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="20" uuid="c3f61a9e-27dd-409d-a23d-6b2cec09252e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="# LE">
+				<reportElement mode="Opaque" x="55" y="0" width="55" height="20" uuid="a0cba427-ba96-44a4-a774-69317ea591f8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_sale}]]></textFieldExpression>
+			</textField>
+			<textField pattern="# LE">
+				<reportElement mode="Opaque" x="110" y="0" width="55" height="20" uuid="0c8910b2-f334-4ff1-884e-4fa9028b9c55"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_buy}]]></textFieldExpression>
+			</textField>
+			<textField pattern="# LE">
+				<reportElement mode="Opaque" x="165" y="0" width="55" height="20" uuid="78f34410-cd4c-47cd-b402-61979a540519"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{price_sale}]]></textFieldExpression>
+			</textField>
+			<textField pattern="# LE">
+				<reportElement mode="Opaque" x="220" y="0" width="55" height="20" uuid="7c395ee7-5bd2-4545-8e7a-01d770cfbf15"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{price_buy}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="275" y="0" width="48" height="20" uuid="147b67e4-7a66-4ef7-8988-87cd9f2e52e1"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="445" y="0" width="50" height="20" uuid="faa5ff01-5c0e-4d7d-854b-b0d60ef0de4c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NumberBill}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="495" y="0" width="55" height="20" uuid="37c88ba9-c5dd-476d-bd8a-367b84e87d6f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_today}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="55" height="20" uuid="ef310aff-b693-4a5c-8d9f-df4aac485497"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accountsbillline_color}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="0" width="67" height="20" uuid="1f52155f-e12a-45a1-8184-565dcb0684a1"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accountsbillline_Model}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="# LE">
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="20" backcolor="#CCCCFF" uuid="a0561d32-7aa7-4f83-b7b5-d88503f7e1f4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{total_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="# LE">
+				<reportElement mode="Opaque" x="55" y="0" width="55" height="20" backcolor="#CCCCFF" uuid="ee09e699-d4b3-446d-9e5b-6f627c68a6b7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_sale_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="# LE">
+				<reportElement mode="Opaque" x="110" y="0" width="55" height="20" backcolor="#CCCCFF" uuid="e10c71c4-a767-4c9b-b436-c6715fb039ed"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_buy_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="203" y="13" width="150" height="23" uuid="319ad283-07a9-4f58-9cfa-918f986a3a1e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<noData>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="50" uuid="3a3118e0-2c96-4bfb-ac7c-467f2d0fc605"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[لا يوجد فواتير]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>
